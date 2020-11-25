@@ -4,8 +4,7 @@ import Post from './Post/Post'
 const MyPosts = (props) => {
     return (
         <div className="my_posts">
-            <Post text={props.data}/>
-            <Post text={props.data}/>
+            {props.posts.map(item => <Post post={item.value} key={item.id}/>)}
         </div>
     )
 }

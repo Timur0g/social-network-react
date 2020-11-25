@@ -11,7 +11,7 @@ const Post = (props) => {
                         </div>
                         <div className="col s10">
                             <span className="black-text">
-                                {props.text}
+                                {props.post}
                             </span>
                         </div>
                     </div>

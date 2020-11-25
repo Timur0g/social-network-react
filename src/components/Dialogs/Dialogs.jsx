@@ -2,8 +2,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import s from './Dialogs.module.css'
 
-const persons = [{id: 'rerget-435-fg-gerg-5-f',name: 'Alex'}, {id: 'rer5-fg-ger-gerg-5-f', name: 'Ahmet'}]
-const messages = [{id: 'ret-5fg-gerg-5-f', value: 'Hello, msf'}, {id: 'vhyht-rfuuk-cvcfr-44-f', value: 'What you say?'}]
 
 const MessageItem = (props) => {
     return(
@@ -20,13 +18,13 @@ const PersonItem = (props) => {
     )
 }
 
-const Dialogs = () => {
+const Dialogs = (props) => {
     return (
         <div className="dialogs">
             <div className="row">
                 <div className="col s7 push-s5">
                     <div className={s.wrap_message + "flow-text center"} >
-                    {messages.map(item => <MessageItem value={item.value}/>)}
+                    {props.data.messages.map(item => <MessageItem value={item.value} key={item.id} />)}
                     </div>
                     <form>
                         <textarea></textarea>
@@ -35,7 +33,7 @@ const Dialogs = () => {
                     
                 </div>
                 <div className="col s5 pull-s7 center">
-                    {persons.map(item => <PersonItem id={item.id} name={item.name}/>)}
+                    {props.data.persons.map(item => <PersonItem id={item.id} name={item.name} key={item.id}/>)}
                 </div>
             </div>
         </div>
