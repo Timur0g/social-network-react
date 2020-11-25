@@ -9,8 +9,8 @@ const App = () => {
     <BrowserRouter>
     <div className="app">    
       <Header />
-      <Route path="/profile" component={Profile} />
-      <Route path="/dialogs" component={Dialogs} />  
+      <Route exact path="/profile" component={Profile} />
+      <Route exact path="/dialogs" component={Dialogs} />  
     </div>
     </BrowserRouter>
   );
