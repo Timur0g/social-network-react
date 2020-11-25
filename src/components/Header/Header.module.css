@@ -1,8 +1,12 @@
-.nav-wrapper {
+.nav_wrapper {
     padding-left: 10px;
     padding-right: 10px;
 }
 
 nav {
     margin-bottom: 30px;
+}
+
+.active {
+    background-color: rgba(0, 0, 0, 0.096);
 }
