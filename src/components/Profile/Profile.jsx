@@ -1,7 +1,7 @@
 import React from 'react';
 import MyPosts from './MyPosts/MyPosts';
 
-const Profile = () => {
+const Profile = (props) => {
     return (
         <div className="profile">
             <div className="container">
@@ -11,7 +11,7 @@ const Profile = () => {
                         <span className="card-title">Тимур Огнев</span>
                     </div>
                     <div className="card-content">
-                        <MyPosts />
+                        <MyPosts data={props.data}/>
                     </div>
                     {/* <div className="card-action">
                         <a href="#">This is a link</a>
