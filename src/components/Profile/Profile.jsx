@@ -1,8 +1,9 @@
 import React from 'react';
+import MyPosts from './MyPosts/MyPosts';
 
 const Profile = () => {
     return (
-        <div className="Profile">
+        <div className="profile">
             <div className="container">
                 <div className="card">
                     <div className="card-image">
@@ -10,12 +11,11 @@ const Profile = () => {
                         <span className="card-title">Тимур Огнев</span>
                     </div>
                     <div className="card-content">
-                        <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
+                        <MyPosts />
                     </div>
-                    <div className="card-action">
+                    {/* <div className="card-action">
                         <a href="#">This is a link</a>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
