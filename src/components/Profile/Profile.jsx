@@ -8,7 +8,7 @@ const Profile = (props) => {
     }
 
     const changeText = (value) => {
-        props.dispatch({type: 'CHANGE-TEXT', value: value});
+        props.dispatch({type: 'CHANGE-TEXT', value: value, text_area: 'profile_post'});
         
     }
 

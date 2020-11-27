@@ -20,7 +20,7 @@ const PersonItem = (props) => {
 
 const Dialogs = (props) => {
     const changeText = (value) => {
-        props.dispatch({ type: 'CHANGE-TEXT',value: value });
+        props.dispatch({ type: 'CHANGE-TEXT', value: value, text_area: 'dialogs_message'});
     }
 
     const addMessage = () => {
