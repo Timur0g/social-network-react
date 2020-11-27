@@ -19,26 +19,26 @@ const PersonItem = (props) => {
 }
 
 const Dialogs = (props) => {
-    const changeText = (entitie, value) => {
-        props.state.dispatch({ type: 'CHANGE-TEXT', entitie: entitie, value: value });
+    const changeText = (value) => {
+        props.dispatch({ type: 'CHANGE-TEXT',value: value });
     }
 
     const addMessage = () => {
-        props.state.dispatch({ type: 'ADD-MESSAGE' });
+        props.dispatch({type: 'ADD-MESSAGE'});
     }
     return (
         <div className="dialogs">
             <div className="row">
                 <div className="col s7 push-s5">
                     <div className={s.wrap_message + "flow-text center"} >
-                        {props.state.dialogs.data.messages.map(item => <MessageItem value={item.value} key={item.id} />)}
+                        {props.dialogs.messages.map(item => <MessageItem value={item.value} key={item.id} />)}
                     </div>
-                    <textarea value={props.state.dialogs.entities.text_area_text } onChange={(e) => changeText('text_area_text_dialogs', e.target.value)}></textarea>
+                    <textarea value={props.dialogs.text_area_text } onChange={(e) => changeText(e.target.value)}></textarea>
                     <button onClick={addMessage}>Send</button>
 
                 </div>
                 <div className="col s5 pull-s7 center">
-                    {props.state.dialogs.data.persons.map(item => <PersonItem id={item.id} name={item.name} key={item.id} />)}
+                    {props.dialogs.persons.map(item => <PersonItem id={item.id} name={item.name} key={item.id} />)}
                 </div>
             </div>
         </div>

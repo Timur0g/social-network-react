@@ -2,15 +2,13 @@ import React from 'react';
 import MyPosts from './MyPosts/MyPosts';
 
 const Profile = (props) => {
-    const REF_textArea = React.createRef();
-    const REF_textArea2 = React.createRef();
 
     const addPost = () => {
-        props.state.dispatch({type: 'ADD-POST'});
+        props.dispatch({type: 'ADD-POST'});
     }
 
-    const changeText = (entitie, value) => {
-        props.state.dispatch({type: 'CHANGE-TEXT', entitie: entitie, value: value});
+    const changeText = (value) => {
+        props.dispatch({type: 'CHANGE-TEXT', value: value});
         
     }
 
@@ -23,10 +21,9 @@ const Profile = (props) => {
                         <span className="card-title">Тимур Огнев</span>
                     </div>
                     <div className="card-content">
-                        <textarea ref={REF_textArea2} value={props.state.profile.entities.text_area_id} onChange={(e) => changeText('text_area_id', e.target.value)}></textarea>
-                        <textarea ref={REF_textArea} value={props.state.profile.entities.text_area_text} onChange={(e) => changeText('text_area_text', e.target.value)}></textarea>
+                        <textarea value={props.profile.text_area_text} onChange={(e) => changeText(e.target.value)}></textarea>
                         <button onClick={addPost}>Send</button>
-                        <MyPosts posts={props.state.profile.data.posts} />
+                        <MyPosts posts={props.profile.posts} />
                     </div>
                 </div>
             </div>
