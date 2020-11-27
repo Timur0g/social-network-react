@@ -2,16 +2,6 @@ import React from 'react';
 import MyPosts from './MyPosts/MyPosts';
 
 const Profile = (props) => {
-
-    const addPost = () => {
-        props.dispatch({type: 'ADD-POST'});
-    }
-
-    const changeText = (value) => {
-        props.dispatch({type: 'CHANGE-TEXT', value: value, text_area: 'profile_post'});
-        
-    }
-
     return (
         <div className="profile">
             <div className="container">
@@ -21,9 +11,12 @@ const Profile = (props) => {
                         <span className="card-title">Тимур Огнев</span>
                     </div>
                     <div className="card-content">
-                        <textarea value={props.profile.text_area_text} onChange={(e) => changeText(e.target.value)}></textarea>
-                        <button onClick={addPost}>Send</button>
-                        <MyPosts posts={props.profile.posts} />
+                        <textarea
+                            value={props.text_area_text}
+                            onChange={props.changeText}
+                        ></textarea>
+                        <button onClick={props.addPost} className="btn">Send</button>
+                        <MyPosts posts={props.posts} />
                     </div>
                 </div>
             </div>

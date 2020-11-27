@@ -8,7 +8,7 @@ const Header = () => {
         <div className="header">
             <nav>
                 <div className={`${s.nav_wrapper} nav-wrapper  blue darken-3`}>
-                    <a href="#!" className="brand-logo">Logo</a>
+                    <a href="#!" className="brand-logo">React</a>
                     <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
                     <ul className="right hide-on-med-and-down">
                         <li><NavLink to="/profile" activeClassName={s.active}>Профиль</NavLink></li>
