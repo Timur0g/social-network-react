@@ -9,8 +9,8 @@ const App = (props) => {
     <BrowserRouter>
     <div className="app">    
       <Header />
-      <Route exact path="/profile" render={() => <Profile  data={props.state.profile}/>} />
-      <Route exact path="/dialogs" render={() => <Dialogs data={props.state.dialogs} messages={props.messages}/>} />  
+      <Route exact path="/profile" render={() => <Profile  state={props.state}/>} />
+      <Route exact path="/dialogs" render={() => <Dialogs state={props.state}/>} />  
     </div>
     </BrowserRouter>
   );
