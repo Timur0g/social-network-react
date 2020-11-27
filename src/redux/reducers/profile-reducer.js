@@ -19,7 +19,7 @@ export const profileReducer = (state = profileState, action) => {
                     state.text_area_text = action.value
                     return state;
                 default:
-                    break
+                    return state;
             }
         default:
             return state;
