@@ -13,6 +13,7 @@ const Header = () => {
                     <ul className="right hide-on-med-and-down">
                         <li><NavLink to="/profile" activeClassName={s.active}>Профиль</NavLink></li>
                         <li><NavLink to="/dialogs" activeClassName={s.active}>Сообщения</NavLink></li>
+                        <li><NavLink to="/users" activeClassName={s.active}>Пользователи</NavLink></li>
                     </ul>
                 </div>
             </nav>
@@ -20,6 +21,7 @@ const Header = () => {
             <ul className="sidenav" id="mobile-demo">
                 <li><NavLink to="/profile" activeClassName={s.active}>Профиль</NavLink></li>
                 <li><NavLink to="/dialogs" activeClassName={s.active}>Сообщения</NavLink></li>
+                <li><NavLink to="/users" activeClassName={s.active}>Пользователи</NavLink></li>
             </ul>
         </div>
     )
