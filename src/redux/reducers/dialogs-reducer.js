@@ -10,14 +10,18 @@ const dialogsState = {
 export const dialogsReducer = (state = dialogsState, action) => {
     switch (action.type) {
         case 'ADD-MESSAGE':
-            state.messages.push({ id: uuid(), value: state.text_area_text });
-            state.text_area_text = '';
-            return state;
+            return {
+                ...state,
+                messages: [...state.messages, { id: uuid(), value: state.text_area_text }],
+                text_area_text: ''
+            }
         case 'CHANGE-TEXT':
             switch (action.text_area) {
                 case 'dialogs_message':
-                    state.text_area_text = action.value
-                    return state;
+                    return {
+                        ...state,
+                        text_area_text: action.value
+                    }
                 default:
                     return state
             }

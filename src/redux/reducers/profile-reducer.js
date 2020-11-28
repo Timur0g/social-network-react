@@ -9,15 +9,18 @@ const profileState = {
 export const profileReducer = (state = profileState, action) => {
     switch (action.type) {
         case 'ADD-POST':
-            const obj = { id: uuid(), value: state.text_area_text };
-            state.posts.unshift(obj);
-            state.text_area_text = ''
-            return state;
+            return {
+                ...state,
+                posts: [{ id: uuid(), value: state.text_area_text } ,...state.posts],
+                text_area_text: ''
+            }
         case 'CHANGE-TEXT':
             switch (action.text_area) {
                 case 'profile_post':
-                    state.text_area_text = action.value
-                    return state;
+                    return {
+                        ...state,
+                        text_area_text: action.value
+                    }
                 default:
                     return state;
             }
