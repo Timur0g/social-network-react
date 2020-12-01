@@ -1,7 +1,8 @@
 const initState = {
     users: [],
     page: 1,
-    totalCount: null
+    totalCount: null,
+    preloader: false
 }
 
 const usersReducer = (state = initState, action) => {
@@ -32,6 +33,12 @@ const usersReducer = (state = initState, action) => {
             return {
                 ...state,
                 page: action.page
+            }
+
+        case 'ACTIVE-PRELOADER':
+            return {
+                ...state,
+                preloader: action.boolean
             }
         default:
             return state
