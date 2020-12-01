@@ -1,0 +1,8 @@
+.pages {
+    max-height: 100px;
+    overflow: scroll;
+}
+
+a {
+    cursor: pointer;
+}

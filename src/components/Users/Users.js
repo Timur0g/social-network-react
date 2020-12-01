@@ -1,19 +1,33 @@
 import Axios from 'axios';
 import React from 'react';
+import c from './Users.module.css'
 
 class Users extends React.Component {
-    constructor(props) {
-        super(props);
-
-        Axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+    componentDidMount() {
+        Axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=10&page=${this.props.page}`).then(response => {
+            this.props.setTotalCount(response.data.totalCount)
             this.props.setUser(response.data.items)
         })
-
     }
 
+    changePage(page) {
+        this.props.setPage(page)
+        Axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=10&page=${page}`).then(response => {
+            this.props.setTotalCount(response.data.totalCount)
+            this.props.setUser(response.data.items)
+        })
+    }
     render() {
+        var pages = [];
+        for (let i = 1; i < Math.ceil(this.props.totalCount / 10); i++) {pages.push(i)}
         return (
             <div className="users">
+                <div className={c.pages}>
+                <ul className={`pagination center`}>
+                    {pages.map(item => <li className={item === this.props.page ? 'active ' : ''}><a onClick={() => this.changePage(item)}>{item}</a></li>)}
+                </ul>
+                </div>
+
                 <div className="col s12 m12">
                     {this.props.users.map(item => {
                         return (
@@ -35,6 +49,9 @@ class Users extends React.Component {
                         )
                     })}
                 </div>
+
+
+
             </div>
         )
     }
