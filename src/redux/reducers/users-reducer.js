@@ -45,4 +45,6 @@ const usersReducer = (state = initState, action) => {
     }
 }
 
+// export const follow = id => {return { type: 'FOLLOW', id: id }}
+
 export default usersReducer;

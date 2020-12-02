@@ -2,13 +2,17 @@ import React from 'react';
 import MyPosts from './MyPosts/MyPosts';
 
 const Profile = (props) => {
+    if (!props.userProfile) {
+        return <div>Загрузка...</div>
+    }
     return (
         <div className="profile">
             <div className="container">
                 <div className="card">
+
                     <div className="card-image">
-                        <img alt=" изображение не найдено " src="https://2e8ram2s1li74atce18qz5y1-wpengine.netdna-ssl.com/wp-content/uploads/2018/08/shutterstock_1060094186-1024x768.jpg"></img>
-                        <span className="card-title">Тимур Огнев</span>
+                        <img alt=" изображение не найдено " src={props.userProfile.photos.large ? props.userProfile.photos.large : 'https://image.shutterstock.com/image-vector/404-not-found-problem-disconnect-600w-721322569.jpg'}></img>
+                        <span className="card-title">{props.userProfile.fullName}</span>
                     </div>
                     <div className="card-content">
                         <textarea
@@ -16,7 +20,7 @@ const Profile = (props) => {
                             onChange={props.changeText}
                         ></textarea>
                         <button onClick={props.addPost} className="btn">Send</button>
-                        <MyPosts posts={props.posts} />
+                        {/* <MyPosts posts={props.posts} /> */}
                     </div>
                 </div>
             </div>

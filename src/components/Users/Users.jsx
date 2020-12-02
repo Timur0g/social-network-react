@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import c from './Users.module.css'
 
 const Users = props => {
@@ -15,7 +16,9 @@ const Users = props => {
                     return (
                         <div className="card horizontal small">
                             <div className="card-image">
-                                <img alt='-' src={item.photos.large ? item.photos.large : 'https://image.freepik.com/free-vector/error-404-not-found-glitch-effect_8024-4.jpg'}></img>
+                                <NavLink to={`/profile/${item.id}`}>
+                                    <img alt='-' src={item.photos.large ? item.photos.large : 'https://image.freepik.com/free-vector/error-404-not-found-glitch-effect_8024-4.jpg'}></img>
+                                </NavLink>
                             </div>
                             <div className="card-stacked">
                                 <div className="card-content">

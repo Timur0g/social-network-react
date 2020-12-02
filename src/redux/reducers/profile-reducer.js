@@ -3,7 +3,8 @@ import { v4 as uuid } from "uuid";
 
 const profileState = {
     posts: [{ id: 'dewfwr343fegr-54', value: 'its my post' }, { id: 'qseffwr-55gfrgr-54', value: 'hellohello' }],
-    text_area_text: ''
+    text_area_text: '',
+    userProfile: undefined
 }
 
 export const profileReducer = (state = profileState, action) => {
@@ -24,6 +25,8 @@ export const profileReducer = (state = profileState, action) => {
                 default:
                     return state;
             }
+        case 'SET-USER-PROFILE':
+            return {...state, userProfile: action.user}
         default:
             return state;
     }

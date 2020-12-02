@@ -13,7 +13,7 @@ const App = (props) => {
     <BrowserRouter>
     <div className="app">    
       <Header />
-      <Route exact path="/profile" render={() => <ProfileContainer />} />
+      <Route path="/profile/:userProfile?" render={() => <ProfileContainer />} />
       <Route exact path="/dialogs" render={() => <DialogsContainer />} />
       <Route exact path="/users" render={() => <UsersContainer />} /> 
 
