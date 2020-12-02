@@ -22,7 +22,9 @@ const Preloader = () => {
 class UsersContainerAJAX extends React.Component {
     componentDidMount() {
         this.props.activePreloader(true)
-        Axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=10&page=${this.props.page}`).then(response => {
+        Axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=10&page=${this.props.page}`, {
+            withCredentials: true
+        }).then(response => {
             this.props.activePreloader(false)
             this.props.setTotalCount(response.data.totalCount)
             this.props.setUser(response.data.items)
@@ -42,19 +44,19 @@ class UsersContainerAJAX extends React.Component {
         var pages = [];
         for (let i = 1; i < Math.ceil(this.props.totalCount / 10); i++) { pages.push(i) }
         return <>
-        {this.props.preloader ? <Preloader /> : null}
-        <Users
-            users={this.props.users}
-            page={this.props.page}
-            pages={pages}
-            follow={this.props.follow}
-            unfollow={this.props.unfollow}
-            changePage={this.changePage}
-            setTotalCount={this.props.setTotalCount}
-            setUser={this.props.setUser}
-            setPage={this.props.setPage}
-            activePreloader={this.props.activePreloader}
-        />
+            {this.props.preloader ? <Preloader /> : null}
+            <Users
+                users={this.props.users}
+                page={this.props.page}
+                pages={pages}
+                follow={this.props.follow}
+                unfollow={this.props.unfollow}
+                changePage={this.changePage}
+                setTotalCount={this.props.setTotalCount}
+                setUser={this.props.setUser}
+                setPage={this.props.setPage}
+                activePreloader={this.props.activePreloader}
+            />
         </>
     }
 }
@@ -71,8 +73,29 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        follow: (id) => dispatch({ type: 'FOLLOW', id: id }),
-        unfollow: (id) => dispatch({ type: 'UNFOLLOW', id: id }),
+        follow: (id) => {
+            Axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {}, {
+                withCredentials: true,
+                headers: {
+                    'API-KEY': 'dfee681b-d81e-4593-aeaa-778f76c30461'
+                }
+            }).then(response => {
+                console.log(response)
+                dispatch({ type: 'FOLLOW', id: id })
+
+            })
+        },
+        unfollow: (id) => {
+            Axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {}, {
+                withCredentials: true,
+                headers: {
+                    'API-KEY': 'dfee681b-d81e-4593-aeaa-778f76c30461'
+                }
+            }).then(response => {
+                console.log(response)
+                dispatch({ type: 'UNFOLLOW', id: id })
+            })        
+        },
         setUser: (user) => dispatch({ type: 'SET-USER', user: user }),
         setTotalCount: (count) => dispatch({ type: 'SET-TOTAL-COUNT', count: count }),
         setPage: (page) => dispatch({ type: 'SET-PAGE', page: page }),

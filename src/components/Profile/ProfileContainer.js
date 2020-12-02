@@ -8,22 +8,36 @@ import Profile from './Profile';
 class ProfileContainerAPI extends React.Component {
 
     componentDidMount() {
+
         let userProfileParam = this.props.match.params.userProfile;
-        if(!userProfileParam) {
-            userProfileParam = 2
+        if (!userProfileParam) {
+
+            Axios.get('https://social-network.samuraijs.com/api/1.0/auth/me', {
+                withCredentials: true
+            }).then(response => {
+                console.log(response.data.data)
+                console.log(this.props.auth.id)
+                this.props.setUserData(response.data.data)
+                userProfileParam = this.props.auth.id
+                Axios.get('https://social-network.samuraijs.com/api/1.0/profile/' + userProfileParam).then(response => {
+                    this.props.setUserProfile(response.data)
+                })
+            })
+        }else {
+            Axios.get('https://social-network.samuraijs.com/api/1.0/profile/' + userProfileParam).then(response => {
+                this.props.setUserProfile(response.data)
+            })
         }
-        Axios.get('https://social-network.samuraijs.com/api/1.0/profile/' + userProfileParam).then(response => {
-            this.props.setUserProfile(response.data)
-        })
+        
     }
 
     render() {
         return (
-            <Profile 
-            text_area_text={this.props.text_area_text}
-            changeText={this.props.changeText}
-            posts={this.props.posts}
-            userProfile={this.props.userProfile}
+            <Profile
+                text_area_text={this.props.text_area_text}
+                changeText={this.props.changeText}
+                posts={this.props.posts}
+                userProfile={this.props.userProfile}
             />
         )
     }
@@ -34,6 +48,7 @@ const mapStateToProps = (state) => {
     return {
         text_area_text: state.profile.text_area_text,
         userProfile: state.profile.userProfile,
+        auth: state.auth,
         posts: state.profile.posts.map(item => <Post post={item.value} key={item.id} />)
     }
 }
@@ -44,7 +59,8 @@ const mapDispatchToProps = (dispatch) => {
             const value = e.target.value;
             dispatch({ type: 'CHANGE-TEXT', value: value, text_area: 'profile_post' })
         },
-        setUserProfile: (user) => dispatch({type: 'SET-USER-PROFILE', user: user})
+        setUserProfile: (user) => dispatch({ type: 'SET-USER-PROFILE', user: user }),
+        setUserData: (data) => dispatch({ type: 'SET-USER-DATA', data: data })
     }
 }
 
