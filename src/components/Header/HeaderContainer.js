@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
+import { setUserData } from '../../redux/reducers/auth-reducer';
 import Header from './Header';
 
 class HeaderContainerAJAX extends React.Component {
@@ -24,7 +25,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setUserData: (data) => dispatch({type: 'SET-USER-DATA', data: data})
+        setUserData: (data) => dispatch(setUserData(data))
     }
 }
 const HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(HeaderContainerAJAX)

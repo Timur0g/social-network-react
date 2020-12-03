@@ -20,7 +20,7 @@ const Profile = (props) => {
                             onChange={props.changeText}
                         ></textarea>
                         <button onClick={props.addPost} className="btn">Send</button>
-                        {/* <MyPosts posts={props.posts} /> */}
+                        <MyPosts posts={props.posts} />
                     </div>
                 </div>
             </div>

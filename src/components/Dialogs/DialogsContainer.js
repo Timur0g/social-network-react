@@ -1,4 +1,6 @@
 import { connect } from "react-redux";
+import { addMessage } from "../../redux/reducers/dialogs-reducer";
+import { changeText } from "../../redux/reducers/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import MessageItem from "./MessageItem";
 import PersonItem from "./PersonItem";
@@ -10,17 +12,15 @@ const mapStateToProps = (state) => {
         persons: state.dialogs.persons.map(item => <PersonItem id={item.id} name={item.name} key={item.id} />)
     }
 }
-
 const mapDispatchToProps = (dispatch) => {
     return {
         changeText: (e) => {
             const value = e.target.value;
-            dispatch({ type: 'CHANGE-TEXT', value: value, text_area: 'dialogs_message'})
+            dispatch(changeText(value))
         },
-        addMessage: () => dispatch({type: 'ADD-MESSAGE'})
+        addMessage: () => dispatch(addMessage())
     }
 }
-
-const ProfileContainer = connect(mapStateToProps ,mapDispatchToProps)(Dialogs);
+const ProfileContainer = connect(mapStateToProps , mapDispatchToProps)(Dialogs);
 
 export default ProfileContainer;

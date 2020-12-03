@@ -2,6 +2,8 @@ import Axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { setUserData } from '../../redux/reducers/auth-reducer';
+import { addPost, changeText, setUserProfile } from '../../redux/reducers/profile-reducer';
 import Post from './MyPosts/Post/Post';
 import Profile from './Profile';
 
@@ -49,18 +51,18 @@ const mapStateToProps = (state) => {
         text_area_text: state.profile.text_area_text,
         userProfile: state.profile.userProfile,
         auth: state.auth,
-        posts: state.profile.posts.map(item => <Post post={item.value} key={item.id} />)
+        posts: state.profile.posts
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        addPost: () => dispatch({ type: 'ADD-POST' }),
+        addPost: () => dispatch(addPost()),
         changeText: (e) => {
             const value = e.target.value;
-            dispatch({ type: 'CHANGE-TEXT', value: value, text_area: 'profile_post' })
+            dispatch(changeText(value))
         },
-        setUserProfile: (user) => dispatch({ type: 'SET-USER-PROFILE', user: user }),
-        setUserData: (data) => dispatch({ type: 'SET-USER-DATA', data: data })
+        setUserProfile: (user) => dispatch(setUserProfile(user)),
+        setUserData: (data) => dispatch(setUserData(data))
     }
 }
 
